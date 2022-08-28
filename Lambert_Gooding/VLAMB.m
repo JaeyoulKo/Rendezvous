@@ -1,7 +1,7 @@
 function [N, VR11, VT11, VR12, VT12, VR21, VT21, VR22, VT22] = VLAMB(GM, R1, R2, TH, TDELT)
 
 TWOPI=2*pi;
-M = TH/TWOPI;
+M = floor(TH/TWOPI);
 THR2 = TH/2 - M*pi;
 DR = R1-R2;
 R1R2 = R1*R2;
