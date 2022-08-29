@@ -1,0 +1,69 @@
+﻿빌드 시작: 2017-12-10 오후 3:37:08
+     1>2 노드의 "D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\ESgen.vcxproj" 프로젝트(Build 대상)입니다.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TC /errorReport:prompt Source\ESgen.c
+         ESgen.c
+     1>d:\mtrv\case study_adr_iridium33\esgen\source\f2c.h(159): warning C4005: 'min' : 매크로 재정의
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h(922) : 'min'의 이전 정의를 참조하십시오.
+     1>d:\mtrv\case study_adr_iridium33\esgen\source\f2c.h(160): warning C4005: 'max' : 매크로 재정의
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdlib.h(921) : 'max'의 이전 정의를 참조하십시오.
+     1>Source\ESgen.c(24): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 'fopen' 선언을 참조하십시오.
+     1>Source\ESgen.c(28): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(230) : 'fscanf' 선언을 참조하십시오.
+     1>Source\ESgen.c(31): warning C4013: 'mkdir'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+     1>Source\ESgen.c(33): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 'sprintf' 선언을 참조하십시오.
+     1>Source\ESgen.c(34): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 'fopen' 선언을 참조하십시오.
+     1>Source\ESgen.c(82): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>Source\ESgen.c(83): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>Source\ESgen.c(131): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>Source\ESgen.c(256): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(356) : 'sprintf' 선언을 참조하십시오.
+     1>Source\ESgen.c(257): warning C4267: '=' : 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>Source\ESgen.c(268): warning C4133: '함수' : 'int *'과(와) 'doublereal *' 사이의 형식이 호환되지 않습니다.
+     1>Source\ESgen.c(270): warning C4133: '함수' : 'long *'과(와) 'doublereal *' 사이의 형식이 호환되지 않습니다.
+     1>Source\ESgen.c(299): warning C4101: 'ind0' :참조되지 않은 지역 변수입니다.
+     1>Source\ESgen.c(343): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>Source\ESgen.c(359): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\ESgen.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\ESgen.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\ESgen.lib" /MACHINE:X64 x64\Release\ESgen.obj
+         x64\Release\snfilewrapper.obj
+         Lib\snoptc.lib
+         코드를 생성하고 있습니다.
+         코드를 생성했습니다.
+     1>snoptc.lib(sn02lib.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn03prnt.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn04wrap.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn05wrpa.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn10mach.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn12ampl.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn17util.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn20amat.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn25bfac.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn27lu77.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn30spec.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn37wrap.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn40bfil.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn50lp.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn55qp.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn56qncg.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn57qopt.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn60srch.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn65rmod.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn70nobj.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn80ncon.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn85hess.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn87sopt.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn90lmqn.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sn95fmqn.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(snblas.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(snopta.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+     1>snoptc.lib(sq02lib.obj) : warning LNK4204: 'D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\vc120.pdb'에 참조 모듈에 대한 디버깅 정보가 없습니다. 디버깅 정보가 없는 것처럼 개체를 링크합니다.
+         ESgen.vcxproj -> D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\x64\Release\ESgen.exe
+     1>"D:\MTRV\Case Study_ADR_IRIDIUM33\ESgen\ESgen.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+
+빌드했습니다.
+
+경과 시간: 00:00:03.10

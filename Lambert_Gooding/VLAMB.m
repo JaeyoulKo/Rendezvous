@@ -20,7 +20,7 @@ else
     SIG=1;
 end
 T = 4*GMS*TDELT/S^2;
-[N,X1,X2] = XLMAB(M,Q,QSQFM1,T);
+[N,X1,X2] = XLAMB(M,Q,QSQFM1,T);
 % PROCEED FOR SINGLE SOLUTION, OR A PAIR
 for I=1:N
     if (I==1)

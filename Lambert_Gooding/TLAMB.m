@@ -6,7 +6,7 @@ L2 = (N>=2);
 L3 = (N==3);
 QSQ = Q*Q;
 XSQ = X*X;
-U = (1-X)*(1+X);
+U = (1-X)*(1+X); % -E
 if (~LM1)
     %needed if series, and otherwise usful when z =0
     DT = 0;
