@@ -537,3 +537,6 @@ FodyWeavers.xsd
 *.vcxproj.*
 *local*.txt
 *.mat
+MTRV_ElementarySolGenaration/lambert_result.txt
+Lambert_Gooding/lambert_tester.txt
+MTRV_ElementarySolGenaration/lambert_tester.txt
