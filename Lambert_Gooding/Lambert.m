@@ -1,4 +1,7 @@
 function [nSol, v1vec, v2vec] = Lambert(Mu, r1vec, r2vec, delT)
+%delT[sec]
+%r1vec, r2vec [km]
+%Mu [km^3/sec^2]
 nSol=0;
 r1 = norm(r1vec);
 r2 = norm(r2vec);
