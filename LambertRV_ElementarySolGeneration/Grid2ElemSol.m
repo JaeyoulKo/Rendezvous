@@ -11,13 +11,13 @@ conb = [grid(2) ; -grid(1) ; grid(4) ; -grid(3)];
 % options = optimoptions(@fmincon,'Algorithm','sqp','Display','off');
 options = optimoptions(@fmincon,'Algorithm','sqp','Display','notify-detailed','MaxFunctionEvaluations',5000,'MaxIteration',5000,'StepTolerance',10^-15);
 
-[xLL , valLL] = fmincon(@(t)DelV_LambRend_tdttf(startOrbit,targetOrbit,t) ...
+[xLL , valLL] = fmincon(@(t)CalcDelVForLamRVFromOrbitsTdTtf(startOrbit,targetOrbit,t) ...
     ,[grid(1)+x0eps grid(3)+x0eps],conA,conb,[],[],[],[],[],options);
-[xLR , valLR] = fmincon(@(t)DelV_LambRend_tdttf(startOrbit,targetOrbit,t) ...
+[xLR , valLR] = fmincon(@(t)CalcDelVForLamRVFromOrbitsTdTtf(startOrbit,targetOrbit,t) ...
     ,[grid(2)-x0eps grid(3)+x0eps],conA,conb,[],[],[],[],[],options);
-[xUL , valUL] = fmincon(@(t)DelV_LambRend_tdttf(startOrbit,targetOrbit,t) ...
+[xUL , valUL] = fmincon(@(t)CalcDelVForLamRVFromOrbitsTdTtf(startOrbit,targetOrbit,t) ...
     ,[grid(1)+x0eps grid(4)-x0eps],conA,conb,[],[],[],[],[],options);
-[xUR , valUR] = fmincon(@(t)DelV_LambRend_tdttf(startOrbit,targetOrbit,t) ...
+[xUR , valUR] = fmincon(@(t)CalcDelVForLamRVFromOrbitsTdTtf(startOrbit,targetOrbit,t) ...
     ,[grid(2)-x0eps grid(4)-x0eps],conA,conb,[],[],[],[],[],options);
 
 x=[xLL;xLR;xUL;xUR];
@@ -62,16 +62,6 @@ else        %step 5
 
 end
 end
-
-    function delV = DelV_LambRend_tdttf(startOrbit,targetOrbit, t)
-        Mu = 398600.442; %km^3/sec^2
-        td=t(1);
-        ttf=t(2);
-        % addpath('./../Lambert_Gooding/')
-        [Xs,Xsdot] = getStateAtT(startOrbit(1),startOrbit(2),startOrbit(3),startOrbit(4),startOrbit(5),startOrbit(6),td);
-        [Xt,Xtdot] = getStateAtT(targetOrbit(1),targetOrbit(2),targetOrbit(3),targetOrbit(4),targetOrbit(5),targetOrbit(6),td+ttf);
-        delV = DelV_LambRend(Mu, Xs, Xsdot, Xt, Xtdot, ttf);
-    end
 
     function flag = isBoundary(X,grid)
         boundaryTol = 0.01;
