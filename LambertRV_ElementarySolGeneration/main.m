@@ -14,5 +14,5 @@ ttfUb = 85000;
 addpath('./../Lambert_Gooding/')
 addpath('./../CoordinateTransformation/')
 tic
-[numSol,Sol]=LocalOptForSTLamRV(startOrbit,targetOrbit, tmax , ttfUb , ttfLb);
+[numSol,Sol]=GetElementarySolution(startOrbit,targetOrbit, tmax , ttfUb , ttfLb);
 toc
