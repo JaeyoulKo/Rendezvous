@@ -12,7 +12,7 @@ ttfLb = 0.5*3600;
 ttfUb = 85000;
 
 addpath('./../Lambert_Gooding/')
-addpath('./../CoordTrans/')
+addpath('./../CoordinateTransformation/')
 tic
 [numSol,Sol]=LocalOptForSTLamRV(startOrbit,targetOrbit, tmax , ttfUb , ttfLb);
 toc

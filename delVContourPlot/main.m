@@ -1,7 +1,7 @@
 clear all
 clc
 addpath('./../Lambert_Gooding/')
-addpath('./../CoordTrans/')
+addpath('./../CoordinateTransformation/')
 
 %Draw Chen et al. JGCD & Jun Bang 1st case Contour Plot 
 % -> Jun Bang 논문 Case Study 1 부분의 Parameter는 typo 인 것 같다.
