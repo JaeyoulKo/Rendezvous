@@ -28,13 +28,17 @@ f = chaserState(2);
 g = chaserState(3);
 delState = zeros(7,1);
 delState(1) = dElem*(1-f^2-g^2);
+% p = chaserState(1);
+% a=p/(1-f^2-g^2);
+% e=sqrt(f^2+g^2);
+% delState(1) = dElem*a*(1-e^2); -> 동욱이 코드
 gradientVector(1) = ( CalcQ(chaserState+delState,targetState,F,mu,WeightParameter) ...
-    - CalcQ(chaserState-delState,targetState,F,mu,WeightParameter) ) / 2*dElem;  %need unit test and double check
+    - CalcQ(chaserState-delState,targetState,F,mu,WeightParameter) ) / (2*dElem);  %need unit test and double check
 delState(1)=0;
 for orbitIdx=2:5 %6
     delState(orbitIdx)=dElem;
     gradientVector(orbitIdx) = ( CalcQ(chaserState+delState,targetState,F,mu,WeightParameter) ...
-    - CalcQ(chaserState-delState,targetState,F,mu,WeightParameter) ) / 2*dElem;
+    - CalcQ(chaserState-delState,targetState,F,mu,WeightParameter) ) / (2*dElem);
     delState(orbitIdx)=0;
 end
 end
@@ -53,8 +57,8 @@ nu = L-atan2(g,f);
 w   = 1 + f*cos(L) + g*sin(L);
 r = p/(1+e*cos(nu));
 sSqr  = 1 + h^2 + k^2; 
-A(1,1) = (2 * a^2)/h * p/r;
-A(1,2) = (2 * a^2)/h * e*sin(nu);
+A(1,1) = (2 * a^2)/sqrt( mu * p ) * p/r;
+A(1,2) = (2 * a^2)/sqrt( mu * p ) * e*sin(nu);
 A(1,3) = 0;
 A(2,1) = sqrt(p/mu)/w * ( (w+1)*cos(L) + f );
 A(2,2) = sqrt(p/mu) * sin(L);
