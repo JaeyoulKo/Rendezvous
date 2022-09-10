@@ -42,8 +42,9 @@ Wf = 1;
 Wg = 1;
 Wh = 1;
 Wk = 1;
-
+WL = 1;
 W = [Wa; Wf; Wg; Wh; Wk] / norm([Wa; Wf; Wg; Wh; Wk]);
+% W = [Wa; Wf; Wg; Wh; Wk; WL] / norm([Wa; Wf; Wg; Wh; Wk; WL]);
 
 %% chaser initial state 
 aChaser = 7000/AU2km;
@@ -93,7 +94,7 @@ while 1
         targetTrajectory = [targetTrajectory, zeros(7,timeStepUnitSize)];
     end
     [QDot, controlInput] = GetQGuidance(chaserState, targetState, F, mu, W);
-    dt = TimeStepForQLaw(chaserState,Q,QDot,mu)
+    dt = TimeStepForQLaw(chaserState,Q,QDot,mu);
     time(i) = time(i-1) + dt;    
     %% chaser trajectory
     inputWithPerturb=controlInput+J2PerturbationDynamicsEquinoctial(chaserState, [mu;Re;J2]);

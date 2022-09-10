@@ -1,6 +1,6 @@
 function [QDot, controlInput] = GetQGuidance(chaserState, targetState, F, mu, W)
 % Q law Guidance의 output 값인 control Input 값과 QDot 을 계산하는 함수
-% WeightParameter = [Wa; Wf; Wg; Wh; Wk] / norm([Wa; Wf; Wg; Wh; Wk]);
+% WeightParameter = [Wa; Wf; Wg; Wh; Wk; WL] / norm([Wa; Wf; Wg; Wh; Wk; WL]);
 % chaser & target State = [p;f;g;h;k;L;Mass(not use)]
 
 QGrad = ComputeGradientOfQ(chaserState, targetState, F, mu, W);
@@ -35,7 +35,7 @@ delState(1) = dElem*(1-f^2-g^2);
 gradientVector(1) = ( CalcQ(chaserState+delState,targetState,F,mu,WeightParameter) ...
     - CalcQ(chaserState-delState,targetState,F,mu,WeightParameter) ) / (2*dElem);  %need unit test and double check
 delState(1)=0;
-for orbitIdx=2:5 %6
+for orbitIdx=2:6 %6
     delState(orbitIdx)=dElem;
     gradientVector(orbitIdx) = ( CalcQ(chaserState+delState,targetState,F,mu,WeightParameter) ...
     - CalcQ(chaserState-delState,targetState,F,mu,WeightParameter) ) / (2*dElem);
@@ -76,5 +76,5 @@ A(6,1) = 0;
 A(6,2) = 0;
 A(6,3) = sqrt(p/mu) * ( h*sin(L) - k*cos(L) ) / w;
 
-D = -A(1:5,:)' * QDot;
+D = -A' * QDot;
 end

@@ -20,13 +20,14 @@ fDotxx = 2 * F * sqrt(p/mu);
 gDotxx = 2 * F * sqrt(p/mu);
 hDotxx = 0.5 * F * sqrt(p/mu) * sSqr / ( sqrt(1-g^2)+f );
 kDotxx = 0.5 * F * sqrt(p/mu) * sSqr / ( sqrt(1-f^2)+g );
-% LDotxx = F * sqrt(p/mu) * sqrt(sSqr-1);'
+% LDotxx = F * sqrt(p/mu) * sqrt(sSqr-1);
 
-maxRateOfChange=[aDotxx;fDotxx;gDotxx;hDotxx;kDotxx]; %;Ldotxx
+maxRateOfChange=[aDotxx;fDotxx;gDotxx;hDotxx;kDotxx];
+% maxRateOfChange=[aDotxx;fDotxx;gDotxx;hDotxx;kDotxx;LDotxx];
 
 %% multiply Scaling Factor S to WeightParameter
-% WeightParameter(1) = WeightParameter(1) *
-% (1+abs(a-targetState(1)/targetState(1))); TODO입니다.
+% m=3; n=4; r=2;
+% WeightParameter(1) = WeightParameter(1) * (1+(abs(chaserState(1)-targetState(1))/targetState(1)/m)^n)^(1/r);
 
 % r_pmin = 6600;
 % k=10;
@@ -34,8 +35,13 @@ maxRateOfChange=[aDotxx;fDotxx;gDotxx;hDotxx;kDotxx]; %;Ldotxx
 
 %% Calculate Q value
 % Q =sum ((1+Wp*P).*WeightParameter.*((chaserState(1:6)-targetState(1:6))./maxRateOfChange).^2);
-
-Q =sum (WeightParameter.*((chaserState(1:5)-targetState(1:5))./maxRateOfChange).^2);
+diffState = chaserState(1:5)-targetState(1:5);
+% diffState = chaserState(1:6)-targetState(1:6);
+% diffState(6) = rem(diffState(6),2*pi);
+% if diffState(6)>pi
+%     diffState(6) = diffState(6)-2*pi;
+% end
+Q =sum (WeightParameter.*((diffState)./maxRateOfChange).^2);
 
 end
 
