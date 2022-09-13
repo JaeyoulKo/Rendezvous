@@ -46,7 +46,7 @@ WL = 1;
 W = [Wa; Wf; Wg; Wh; Wk] / norm([Wa; Wf; Wg; Wh; Wk]);
 % W = [Wa; Wf; Wg; Wh; Wk; WL] / norm([Wa; Wf; Wg; Wh; Wk; WL]);
 
-%% chaser initial state 
+%% chaser & target initial state 
 aChaser = 7000/AU2km;
 eChaser = 0.01;
 iChaser = 0.05*pi/180;
@@ -67,7 +67,7 @@ nuTarget  = 0;
 
 targetState = [pTarget; fTarget; gTarget; hTarget; kTarget; LTarget; nan]; %? initial Mass .... ?
 
-%% initialize
+%% initialize iteration
 timeStepUnitSize=3000;
 time = zeros(timeStepUnitSize,1);
 QHist = zeros(timeStepUnitSize,1);
@@ -96,18 +96,18 @@ while 1
     [QDot, controlInput] = GetQGuidance(chaserState, targetState, F, mu, W);
     dt = TimeStepForQLaw(chaserState,Q,QDot,mu);
     time(i) = time(i-1) + dt;    
-    %% chaser trajectory
+    %% trajectory integration
     inputWithPerturb=controlInput+J2PerturbationDynamicsEquinoctial(chaserState, [mu;Re;J2]);
 %     odeOption = odeset('MaxStep',1);
 %     [time , st] = ode45(@(time,state)TwoBodyVOPDynamicsEquinoctial(state,inputWithPerturb,[mu;ThrustMax;c]),[0 dt],chaserState,odeOption);
     chaserState = RK4IntegralGaussEq(chaserState,inputWithPerturb,dt,[mu;ThrustMax;c]);
     chaserTrajectory(:,i) = chaserState;
 
-    %% target trajectory
     targetPerturbation = J2PerturbationDynamicsEquinoctial(targetState, [mu;Re;J2]);
     targetState = RK4IntegralGaussEq(targetState,targetPerturbation,dt,[mu;ThrustMax;c]);
     targetTrajectory(:,i) = targetState;
 
+    %% Store Result
     Q = CalcQ(chaserState, targetState, F, mu, W);
     QHist(i) = Q;
     if Q < tol
@@ -140,7 +140,7 @@ kTarget = ones(1,100) * kTarget;
 LTarget = linspace(LTarget,LTarget+2*pi,100);
 
 [aTarget,eTarget,iTarget,oTarget,wTarget,nuTarget] = Equinoctial2KeplerianMIMO(pTarget,fTarget,gTarget,hTarget,kTarget,LTarget);
-[rTargetOrbit,~] = Keplerian2GeocentricMIMO(pTarget,eTarget,iTarget,oTarget,wTarget,nuTarget);
+[rTargetOrbit,~] = Keplerian2GeocentricMIMO(aTarget,eTarget,iTarget,oTarget,wTarget,nuTarget);
 
 %% Low Thrust RV trajectory
 [a,e,i,o,w,nuArr] = Equinoctial2KeplerianMIMO(chaserTrajectory(1,:), chaserTrajectory(2,:), chaserTrajectory(3,:), chaserTrajectory(4,:), chaserTrajectory(5,:) ,chaserTrajectory(6,:));
