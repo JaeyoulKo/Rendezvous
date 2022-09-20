@@ -10,7 +10,7 @@ ThrustMax = 1;                      % N
 Mmax      = 300;                    % kg
 Isp       = 3100;                   % sec
 g0        = 9.80665;                % m/s^2
-J2        = 0;
+J2        = 0; %1086.639*10^-6
 %--------------- Sun ------------------%
 % mu        = 1.32712440018*10^11;    % km^3/s^2
 % Re        = 149597870.7;            % km
@@ -34,7 +34,7 @@ Isp  = Isp  / TU2sec;
 g0   = g0   / (AU2km*1000 / TU2sec^2);
 c    = Isp * g0;
 F    = ThrustMax / Mmax;
-J2   = J2; %TODO : check need normalize
+% J2 는 무차원, Normalize 필요 없음.
 
 %% Weight parameters
 Wa = 1;
@@ -70,7 +70,7 @@ targetState = [pTarget; fTarget; gTarget; hTarget; kTarget; LTarget; nan]; %? in
 %% initialize iteration
 timeStepUnitSize=3000;
 time = zeros(timeStepUnitSize,1);
-QHist = zeros(timeStepUnitSize,1);
+QHist = zeros(timeStepUnitSize,2);
 chaserTrajectory = zeros(7,timeStepUnitSize);
 targetTrajectory = zeros(7,timeStepUnitSize);
 
@@ -82,14 +82,14 @@ QHist(1) = Q;
 
 %% Q-Guidance Simulation Start
 i = 1;
-tol = sqrt(sum(W));
+tol = 10; % sqrt(sum(W));
 while 1
     
     F = ThrustMax / chaserState(7);
     i = i+1;
     if (rem(i,timeStepUnitSize)==0)
         time = [time ; zeros(timeStepUnitSize,1)];
-        QHist = [QHist ; zeros(timeStepUnitSize,1)];
+        QHist = [QHist ; zeros(timeStepUnitSize,2)];
         chaserTrajectory = [chaserTrajectory, zeros(7,timeStepUnitSize)];
         targetTrajectory = [targetTrajectory, zeros(7,timeStepUnitSize)];
     end
@@ -99,7 +99,8 @@ while 1
     %% trajectory integration
     inputWithPerturb=controlInput+J2PerturbationDynamicsEquinoctial(chaserState, [mu;Re;J2]);
 %     odeOption = odeset('MaxStep',1);
-%     [time , st] = ode45(@(time,state)TwoBodyVOPDynamicsEquinoctial(state,inputWithPerturb,[mu;ThrustMax;c]),[0 dt],chaserState,odeOption);
+%     [timestep , st] = ode45(@(time,state)TwoBodyVOPDynamicsEquinoctial(state,inputWithPerturb,[mu;ThrustMax;c]),[0 dt],chaserState);
+%     chaserState = st(end,:)';
     chaserState = RK4IntegralGaussEq(chaserState,inputWithPerturb,dt,[mu;ThrustMax;c]);
     chaserTrajectory(:,i) = chaserState;
 
@@ -109,10 +110,11 @@ while 1
 
     %% Store Result
     Q = CalcQ(chaserState, targetState, F, mu, W);
-    QHist(i) = Q;
+    QHist(i,1) = Q;
+    QHist(i,2) = QDot;
     if Q < tol
         time = time(1:i);
-        QHist = QHist(1:i);
+        QHist = QHist(1:i,:);
         chaserTrajectory = chaserTrajectory(:,1:i);
         targetTrajectory = targetTrajectory(:,1:i);
         break

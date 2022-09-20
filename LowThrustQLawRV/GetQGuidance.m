@@ -1,18 +1,19 @@
-function [QDot, controlInput] = GetQGuidance(chaserState, targetState, F, mu, W)
+function [QDot, ControlInput] = GetQGuidance(chaserState, targetState, F, mu, W)
 % Q law Guidance의 output 값인 control Input 값과 QDot 을 계산하는 함수
+% TODO : QDot 관련 Unit Test & Debuggin 필요
 % WeightParameter = [Wa; Wf; Wg; Wh; Wk; WL] / norm([Wa; Wf; Wg; Wh; Wk; WL]);
 % chaser & target State = [p;f;g;h;k;L;Mass(not use)]
 
-QGrad = ComputeGradientOfQ(chaserState, targetState, F, mu, W);
+% QGrad = ComputeGradientOfQ(chaserState, targetState, F, mu, W);
+QGrad = ComputeGradientOfQ(chaserState, targetState, 1, mu, W);
 
-controlInput = CalcD(chaserState,QGrad,mu);
+D = CalcD(chaserState,QGrad,mu);
+% QDot_TEMP = D;
 
-alpha = atan2(-controlInput(2),-controlInput(1));
-beta  = atan( -controlInput(3)/sqrt(controlInput(1)^2+controlInput(2)^2) );
-
-controlInput = controlInput/norm(controlInput) * F;
-QDot = controlInput(1)*cos(beta)*cos(alpha) + controlInput(2)*cos(beta)*sin(alpha) + controlInput(3)*sin(beta);
-
+alpha = atan2(-D(2),-D(1));
+beta  = atan( -D(3)/sqrt(D(1)^2+D(2)^2) ); % Direction of Thrust Force
+ControlInput = D/norm(D) * F; % Magnitude of Thrust Force
+QDot = D(1)*cos(beta)*cos(alpha) + D(2)*cos(beta)*sin(alpha) + D(3)*sin(beta); % TODO: Value Check, Debugging
 
 end
 
@@ -28,10 +29,6 @@ f = chaserState(2);
 g = chaserState(3);
 delState = zeros(7,1);
 delState(1) = dElem*(1-f^2-g^2);
-% p = chaserState(1);
-% a=p/(1-f^2-g^2);
-% e=sqrt(f^2+g^2);
-% delState(1) = dElem*a*(1-e^2); -> 동욱이 코드
 gradientVector(1) = ( CalcQ(chaserState+delState,targetState,F,mu,WeightParameter) ...
     - CalcQ(chaserState-delState,targetState,F,mu,WeightParameter) ) / (2*dElem);  %need unit test and double check
 delState(1)=0;
@@ -43,7 +40,7 @@ for orbitIdx=2:6 %6
 end
 end
 
-function D = CalcD(state, QDot, mu)
+function D = CalcD(state, QDotPartial, mu)
 % TwoBodyVOPDynamicsEquinoctial
 p = state(1); f = state(2); g = state(3); h = state(4); k = state(5); L = state(6);
 % Mass = state(7)
@@ -57,6 +54,7 @@ nu = L-atan2(g,f);
 w   = 1 + f*cos(L) + g*sin(L);
 r = p/(1+e*cos(nu));
 sSqr  = 1 + h^2 + k^2; 
+%% A = round orbit element / round F_t, F_r, F_n
 A(1,1) = (2 * a^2)/sqrt( mu * p ) * p/r;
 A(1,2) = (2 * a^2)/sqrt( mu * p ) * e*sin(nu);
 A(1,3) = 0;
@@ -76,5 +74,5 @@ A(6,1) = 0;
 A(6,2) = 0;
 A(6,3) = sqrt(p/mu) * ( h*sin(L) - k*cos(L) ) / w;
 
-D = -A' * QDot;
+D = -A' * QDotPartial;
 end
