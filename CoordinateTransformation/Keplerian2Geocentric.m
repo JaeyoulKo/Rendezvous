@@ -1,6 +1,8 @@
-function [X,Xdot] = OrbitElem2RV(a,e,i,o,w,nu)
+function [X,Xdot] = Keplerian2Geocentric(a,e,i,o,w,nu)
+% Keplerian Orbit Element 를 geocentric equatorial coordinate system 으로 변환
 
-%need unit test
+
+% use keplerian2ijk
 
 % a : semimajor axis
 % e : eccentricity
@@ -8,6 +10,7 @@ function [X,Xdot] = OrbitElem2RV(a,e,i,o,w,nu)
 % o[rad] : Longitude of the ascending node
 % w[rad] : Argument of periapsis
 % nu[rad] : True anomaly
+
 mu = 398600.442;
 p = a*(1 - e^2);
 r = p / (1 + e*cos(nu));

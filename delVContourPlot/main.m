@@ -1,7 +1,7 @@
 clear all
 clc
 addpath('./../Lambert_Gooding/')
-addpath('./../CoordTrans/')
+addpath('./../CoordinateTransformation/')
 
 %Draw Chen et al. JGCD & Jun Bang 1st case Contour Plot 
 % -> Jun Bang 논문 Case Study 1 부분의 Parameter는 typo 인 것 같다.
@@ -12,7 +12,7 @@ i=1;
 for td = linspace(20000,30000,500)
     j=1;
     for ttf = linspace(40000,70000,500)
-        Z(j,i)=DelV_LambRend_tdttf(startOrbit,targetOrbit,[td;ttf]);
+        Z(j,i)=CalcDelVForLamRVFromOrbitsTdTtf(startOrbit,targetOrbit,[td;ttf]);
         j=j+1;
     end
     i=i+1;
@@ -27,7 +27,7 @@ contour(linspace(20000,30000,500),linspace(40000,70000,500),Z,50);
 % for td = linspace(300,20000,6000)
 %     j=1;
 %     for ttf = linspace(3000,20000,6000)
-%         Z(j,i)=DelV_LambRend_tdttf(startOrbit,targetOrbit,[td;ttf]);
+%         Z(j,i)=CalcDelVForLamRVFromOrbitsTdTtf(startOrbit,targetOrbit,[td;ttf]);
 %         j=j+1;
 %     end
 %     i=i+1;

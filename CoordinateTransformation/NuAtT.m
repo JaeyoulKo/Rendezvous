@@ -1,8 +1,7 @@
-function nu = TrueAnomalyAtdeltaT(a,e,i,o,w,nu0,t)
+function nu = NuAtT(a,e,nu0,t)
 
 mu = 398600.442;
 M0 = nu0 - 2 * e*sin(nu0) + (3 * e^2 / 4 + e^4 / 8)*sin(2 * nu0) - e^3*sin(3 * nu0) / 3 + 5*e^4*sin(4 * nu0) / 32;
-% M0 = nu0;
 M = M0 + sqrt(mu / a^3)*t;
 % Mean anomaly - (Measured in Radian) - Mean anomaly is the fraction of an elliptical orbit's period that has elapsed since the orbiting body passed periapsis.
 if (M < 0)
