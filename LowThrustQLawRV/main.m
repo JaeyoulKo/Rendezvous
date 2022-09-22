@@ -70,7 +70,7 @@ targetState = [pTarget; fTarget; gTarget; hTarget; kTarget; LTarget; nan]; %? in
 %% initialize iteration
 timeStepUnitSize=3000;
 time = zeros(timeStepUnitSize,1);
-QHist = zeros(timeStepUnitSize,2);
+QHist = zeros(timeStepUnitSize,1);
 chaserTrajectory = zeros(7,timeStepUnitSize);
 targetTrajectory = zeros(7,timeStepUnitSize);
 
@@ -89,7 +89,7 @@ while 1
     i = i+1;
     if (rem(i,timeStepUnitSize)==0)
         time = [time ; zeros(timeStepUnitSize,1)];
-        QHist = [QHist ; zeros(timeStepUnitSize,2)];
+        QHist = [QHist ; zeros(timeStepUnitSize,1)];
         chaserTrajectory = [chaserTrajectory, zeros(7,timeStepUnitSize)];
         targetTrajectory = [targetTrajectory, zeros(7,timeStepUnitSize)];
     end
@@ -110,11 +110,10 @@ while 1
 
     %% Store Result
     Q = CalcQ(chaserState, targetState, F, mu, W);
-    QHist(i,1) = Q;
-    QHist(i,2) = QDot;
+    QHist(i) = Q;
     if Q < tol
         time = time(1:i);
-        QHist = QHist(1:i,:);
+        QHist = QHist(1:i);
         chaserTrajectory = chaserTrajectory(:,1:i);
         targetTrajectory = targetTrajectory(:,1:i);
         break

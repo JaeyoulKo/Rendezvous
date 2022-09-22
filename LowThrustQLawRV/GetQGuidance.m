@@ -1,19 +1,16 @@
 function [QDot, ControlInput] = GetQGuidance(chaserState, targetState, F, mu, W)
 % Q law Guidance의 output 값인 control Input 값과 QDot 을 계산하는 함수
-% TODO : QDot 관련 Unit Test & Debuggin 필요
 % WeightParameter = [Wa; Wf; Wg; Wh; Wk; WL] / norm([Wa; Wf; Wg; Wh; Wk; WL]);
 % chaser & target State = [p;f;g;h;k;L;Mass(not use)]
 
-% QGrad = ComputeGradientOfQ(chaserState, targetState, F, mu, W);
-QGrad = ComputeGradientOfQ(chaserState, targetState, 1, mu, W);
-
+QGrad = ComputeGradientOfQ(chaserState, targetState, 1, mu, W); % F Normalize 해서 값을 구한 뒤, 결과에 곱해줌.
 D = CalcD(chaserState,QGrad,mu);
-% QDot_TEMP = D;
 
 alpha = atan2(-D(2),-D(1));
 beta  = atan( -D(3)/sqrt(D(1)^2+D(2)^2) ); % Direction of Thrust Force
+QDot = (D(1)*cos(beta)*cos(alpha) + D(2)*cos(beta)*sin(alpha) + D(3)*sin(beta))/F; 
+
 ControlInput = D/norm(D) * F; % Magnitude of Thrust Force
-QDot = D(1)*cos(beta)*cos(alpha) + D(2)*cos(beta)*sin(alpha) + D(3)*sin(beta); % TODO: Value Check, Debugging
 
 end
 
