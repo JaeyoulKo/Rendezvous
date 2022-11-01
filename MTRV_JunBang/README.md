@@ -7,7 +7,7 @@ Jun Bang Original Research 중 source code만 저장
 
 
 Build 생성하는 방법
-1. 새롭게 생성하고자 하는 이름의 프로젝트 생성 (콘솔 응용 프로그램 / 솔루션용 디렉터리 만들기 해제/ 다음 선택 후 빈 프로젝트 생성)
+1. 새롭게 생성하고자 하는 이름의 프로젝트 생성 (콘솔 응용 프로그램 / 솔루션용 디렉터리 만들기 해제/ 다음 선택 후 빈 프로젝트 생성 / SDL 검사 체크 해제)
 2. 기존 원본 폴더와 같은 형태로 구성
 3. 프로젝트 소스파일에 해당 파일 추가 (원본 Source 폴더 내 확장자 .c)
 4. 프로젝트 헤더파일에 해당 파일 추가 (원본 Source 폴더 내 확장자 .h)
@@ -17,4 +17,5 @@ Build 생성하는 방법
 "libcmt.lib" 입력
 
 
-C 코드의 VS2013 버전으로 Compile 해야함. 이후 버전 빌드 깨짐. 최신화 -> MTRV_ElementarySolGenaration
+C 코드의 VS2013 버전으로 Compile 해야함. 이후 버전 빌드 깨짐. 
+최신화 TODO -> MTRV_ElementarySolGenaration (SNOPT 최신 버전 빌드 성공 후 작업)
