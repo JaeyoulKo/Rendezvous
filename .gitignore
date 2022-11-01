@@ -59,7 +59,6 @@ octave-workspace
 *.pch
 
 # Libraries
-*.lib
 *.a
 *.la
 *.lo
