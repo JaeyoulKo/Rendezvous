@@ -212,7 +212,7 @@ void optim(double *x0, double *x_lb, double *x_ub, double *opt_result){
 	int nxname = 1, nFname = 1, npname = 1;
 	int INFO, neA, neG, mincw, miniw, minrw, nInf, nS, strOpt_len;
 	int ObjRow = 1, ObjAdd = 0, DerOpt = 0;
-	long sInf;
+	double sInf;
 	char strOpt[50], Prob[10];
 
 	char *cw, *xnames, *Fnames;
